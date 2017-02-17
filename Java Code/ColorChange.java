@@ -30,6 +30,7 @@ public class ColorChange {
     }  
     
     public static BufferedImage changeImage(BufferedImage original) {  
+	//gets the dimensions of a picture.
         int width = original.getWidth();
         int height = original.getHeight();
         
