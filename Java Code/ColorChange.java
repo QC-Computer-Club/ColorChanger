@@ -29,22 +29,35 @@ public class ColorChange {
         return bimg;  
     }  
     
-    public static BufferedImage changeImage(BufferedImage original) {  
-	//gets the dimensions of a picture.
+    
+   
+    public static void changeImage(BufferedImage original) {  
+    //gets the dimensions of a picture.
         int width = original.getWidth();
         int height = original.getHeight();
         
         //Commands for creating a color you want to change to.
-        //Color colorName=new Color(int r,int g,int blue);
-        //Color colorName=new Color(int red,int green,int blue,int alpha);
+        //Color colorName=new Color(int r,int g,int blue,int alpha);
+        Color colorName=new Color(0,0,0,0);
         
         //Changing the color of a pixel at that exact location.
-        //image.setrgb(x,y,colorName)
-        File outputfile = new File("saved.png");
-        ImageIO.write(original, "png", outputfile);
+        for(int x=0;x<width/2;x++)
+        {
+         for(int y=0;y<height;y++)
+         {
+         original.setRGB(x,y,colorName.getRGB());
+         }
+        }
+        panel.repaint();
+//         File outputfile = new File("C:\\Users\\Instructor\\Desktop\\Color\\saved.png");
+//         try{
+//          ImageIO.write(original, "png", outputfile);
+//         }
+//         catch (IOException e) {
+//          }
     }  
     
-    
+    static JImagePanel panel;
     BufferedImage loadImg = null;
 
     public void loadAndDisplayImage(JFrame frame) {  
@@ -52,13 +65,16 @@ public class ColorChange {
     	try {
       
       //Change the read in location.
-    		loadImg = ImageIO.read(new File("C:\\Users\\Instructor\\Desktop\\Color\\download.png"));
+    		loadImg = ImageIO.read(new File("C:\\Users\\student\\Desktop\\tumblr_n2t1deilBd1skrbjro1_1280.jpg"));
     	} catch (IOException e) {
     	}
         frame.setBounds(0, 0, loadImg.getWidth(), loadImg.getHeight());  
-        JImagePanel panel = new JImagePanel(loadImg, 0, 0);  
+        panel = new JImagePanel(loadImg, 0, 0);  
         frame.add(panel);  
         frame.setVisible(true);  
+        changeImage(loadImg);
     }  
+    
+    
 }
 
